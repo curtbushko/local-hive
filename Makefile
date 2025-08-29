@@ -25,7 +25,7 @@ CNI_NET_DIR = /etc/cni/conf.d
 .PHONY: default
 default: help
 
-.PHONY: run-nomad 
+.PHONY: run-nomad
 run-nomad: # Start nomad in dev mode
 	@gum log --prefix local-hive --time RFC3339 --structured --level info "Starting nomad server" mode dev config $(DEST_NOMAD_SERVER_CONF)
 	sudo nomad agent -dev --config=$(DEST_NOMAD_SERVER_CONF)
@@ -82,7 +82,7 @@ run-firecracker: # Run firecracker
 	firecracker --no-api --config-file $(DEST_FIRECRACKER_CONF)
 
 .PHONY: setup
-setup: setup-nomad setup-firecracker # Set up everything
+setup: setup-nomad setup-firecracker setup-cni # Set up everything
 
 .PHONY: kill-all
 kill-all: # Shutdown nomad and firecracker-task-driver
